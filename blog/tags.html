@@ -9,19 +9,15 @@
 <div class="a1">
 	<div class="b1">
 		<ul class="d1">
-			<form method="post" action="/temp/login">
-				<li>
-					<span>用户名：</span>
-					<input type="text" name="loginName" />
-				</li>
-				<li>
-					<span>密&nbsp;&nbsp;&nbsp;码：</span>
-					<input type="password" name="password" />
-				</li>
-				<li>
-					<input type="submit" />
-				</li>
-			</form>
+			<li>
+				<a href="/"><- 首页</a>
+			</li>
+			#for(tag : tags)
+			<li>
+				<span>-></span>
+				<a href="/tag/#(tag.tag)">#(tag.tag)</a> <span> (#(tag.count))</span>
+			</li>
+			#end
 		</ul>
 	</div>
 </div>
