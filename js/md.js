@@ -1,7 +1,7 @@
-let markedjs = document.createElement("script");
+var markedjs = document.createElement("script");
 markedjs.setAttribute("type", "text/javascript");
 markedjs.setAttribute("src", "/js/marked.min.js");
-let highlight = document.createElement("script");
+var highlight = document.createElement("script");
 highlight.setAttribute("type", "text/javascript");
 highlight.setAttribute("src", "/js/highlight.pack.js");
 document.body.appendChild(markedjs);
