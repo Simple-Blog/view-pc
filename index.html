@@ -40,14 +40,21 @@
 
 <script src="/layui/layui.js"></script>
 <script>
-    layui.config({
-        base: '/js/' //假设这是你存放拓展模块的根目录
-    }).extend({ //设定模块别名
+    layui.use(['axios', 'jsencrypt'], function(){
+		axios = layui.axios;
+		encrypt = layui.jsencrypt;
+		encrypt.setPublicKey("");
+		var pwd = encrypt.encrypt("123");
+		console.log(pwd);
+		console.log(login(123,123));
+		console.log(1);
     });
 
-    layui.use('test', function(){
-        console.log(layui.test());
-    });
+	async function login(loginNumber, pwd) {
+		var result = await axios.get("/api/rsa/publicKey");
+		console.log(result.data);
+		return result;
+	}
 </script>
 </body>
 </html>
