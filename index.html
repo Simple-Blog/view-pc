@@ -43,18 +43,34 @@
     layui.use(['axios', 'jsencrypt'], function(){
 		axios = layui.axios;
 		encrypt = layui.jsencrypt;
-		encrypt.setPublicKey("");
-		var pwd = encrypt.encrypt("123");
-		console.log(pwd);
-		console.log(login(123,123));
-		console.log(1);
+
+        login("ggboy","123");
+
+		async function login(loginNumber, pwd) {
+            try {
+            	var result = await axios.get("/api/rsa/publicKey");
+            	if (result.data.code != 'OK') {
+            	    console.log(result.data.message)
+					return false;
+				}
+            	encrypt.setPublicKey(result.data.data);
+            	pwd = encrypt.encrypt(pwd);
+
+                result = await axios.post("/api/login", {loginNumber:loginNumber,password:pwd});
+                if (result.data.code != 'OK') {
+                    console.log(result.data.message)
+                    return false;
+                }
+                return true;
+			} catch (e) {
+			    if (e.response.status == 404)
+			        window.location = "/404.html";
+            }
+			console.log(result.data);
+			return result;
+		}
     });
 
-	async function login(loginNumber, pwd) {
-		var result = await axios.get("/api/rsa/publicKey");
-		console.log(result.data);
-		return result;
-	}
 </script>
 </body>
 </html>
