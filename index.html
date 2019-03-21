@@ -40,37 +40,24 @@
 
 <script src="/layui/layui.js"></script>
 <script>
-    layui.use(['axios', 'jsencrypt'], function(){
-		axios = layui.axios;
-		encrypt = layui.jsencrypt;
+    layui.use(['httputil', 'jsencrypt'], function(){
+		let encrypt = layui.jsencrypt;
+		let httputil = layui.httputil;
 
         login("ggboy","123");
 
 		async function login(loginNumber, pwd) {
             try {
-            	var result = await axios.get("/api/rsa/publicKey");
-            	if (result.data.code != 'OK') {
-            	    console.log(result.data.message)
-					return false;
-				}
+            	var result = await httputil.get("/rsa/publicKey");
             	encrypt.setPublicKey(result.data.data);
             	pwd = encrypt.encrypt(pwd);
-
-                result = await axios.post("/api/login", {loginNumber:loginNumber,password:pwd});
-                if (result.data.code != 'OK') {
-                    console.log(result.data.message)
-                    return false;
-                }
-                return true;
+                await httputil.post("/user/login", {loginNumber:loginNumber,password:pwd});
+                console.log("登陆成功");
 			} catch (e) {
-			    if (e.response.status == 404)
-			        window.location = "/404.html";
+            	console.log(e.response);
             }
-			console.log(result.data);
-			return result;
 		}
     });
-
 </script>
 </body>
 </html>
