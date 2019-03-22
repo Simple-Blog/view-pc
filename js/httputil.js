@@ -7,7 +7,7 @@ layui.define(['axios', 'jquery'], function(exports){
         headers: {
             'Content-Type' : 'application/x-www-form-urlencoded'
         },
-        responseType: 'json',
+        responseType: 'text',
         // 参数序列化
         paramsSerializer: function(params) {
             // console.log("paramsSerializer : ");
@@ -28,21 +28,50 @@ layui.define(['axios', 'jquery'], function(exports){
         transformResponse: [function(data) {
             // console.log("transformResponse : ");
             // console.log(data);
-            return data;
+            try {
+                if (data == null || data == '')
+                    return null;
+                return JSON.parse(data);
+            } catch(e) {
+                return data;
+            }
         }],
         validateStatus: function (status) {
-            if (status == 404)
-                window.location = "/404.html";
             return status == 200;
         },
     });
 
     exports('httputil', {
         post : function(url, data) {
-            return strSender.post(url, data);
+            return this.request("post", url, data);
         },
         get : function(url, data) {
-            return strSender.get(url, data);
+            return this.request("get", url, data);
+        },
+        request : async function(method, url, obj) {
+            let data = method == "get" ? null : obj;
+            let params = method != "get" ? null : obj;
+
+            try {
+                let response = await strSender.request({
+                    url : url,
+                    method : method,
+                    params : params,
+                    data : data,
+                });
+                return response.data;
+            } catch (e) {
+                if (e.response != null)
+                    if (e.response.status == 404)
+                        window.location = "/404.html";
+                    else if (e.response.status == 401 && e.response.data == 999)
+                        window.location = "/login.html";
+                    else
+                        throw e.response;
+
+                console.log(e);
+                throw null;
+            }
         }
     });
 });

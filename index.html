@@ -1,7 +1,7 @@
 <!doctype html>
 <head>
     <meta charset="utf-8">
-    <title>abcdefg</title>
+    <title>Saturday</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href="/layui/css/layui.css" rel="stylesheet"/>
     <link href="/css/base.css" rel="stylesheet"/>
@@ -9,7 +9,7 @@
 <body>
 <div class="a1">
 	<div class="b1">
-		<ul class="d1">
+		<ul class="d1 templet" url="/user/getLoginUser">
 			<li>
 				<span>-></span>
 				<a href="category">博客分类</a>
@@ -22,41 +22,29 @@
 				<span>-></span>
 				<a href="tags">标签列表</a>
 			</li>
+			{{# if(d.userName == null) { }}
 			<li>
 				<span>-></span>
-				<a href="/login">管理员登陆</a>
+				<a href="/login.html">管理员登陆</a>
+			</li>
+			{{# } else { }}
+			<li>
+				<span>-></span>
+				<a href="console">控制台 : {{ d.userName }}</a>
 			</li>
 			<li>
 				<span>-></span>
-				<a href="console">控制台 : #(session.user.name)</a>
+				<a href="javascritp:void(0)">登出</a>
 			</li>
-			<li>
-				<span>-></span>
-				<a href="/temp/logout">登出</a>
-			</li>
+			{{# } }}
 		</ul>
 	</div>
 </div>
 
 <script src="/layui/layui.js"></script>
 <script>
-    layui.use(['httputil', 'jsencrypt'], function(){
-		let encrypt = layui.jsencrypt;
-		let httputil = layui.httputil;
-
-        login("ggboy","123");
-
-		async function login(loginNumber, pwd) {
-            try {
-            	var result = await httputil.get("/rsa/publicKey");
-            	encrypt.setPublicKey(result.data.data);
-            	pwd = encrypt.encrypt(pwd);
-                await httputil.post("/user/login", {loginNumber:loginNumber,password:pwd});
-                console.log("登陆成功");
-			} catch (e) {
-            	console.log(e.response);
-            }
-		}
+    layui.use(['init'], function(){
+    	layui.init();
     });
 </script>
 </body>
