@@ -13,13 +13,13 @@
 			<div class="layui-form-item">
 				<label class="layui-form-label">用户名</label>
 				<div class="layui-input-inline">
-					<input type="text" name="loginNumber" required  lay-verify="required" placeholder="请输入用户名" autocomplete="off" class="layui-input">
+					<input type="text" name="loginNumber" required  lay-rify="required" placeholder="请输入用户名" autocomplete="off" class="layui-input">
 				</div>
 			</div>
 			<div class="layui-form-item">
 				<label class="layui-form-label">密码</label>
 				<div class="layui-input-inline">
-					<input type="password" name="password" required lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
+					<input type="password" name="password" required lay-very="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
 				</div>
 			</div>
 			<div class="layui-form-item">
@@ -46,16 +46,14 @@
 		async function login(data) {
 			try {
 				let response = await httputil.get("/rsa/publicKey");
-				encrypt.setPublicKey(response);
+				encrypt.setPublicKey(response.data);
 				data.password = encrypt.encrypt(data.password);
 				await httputil.post("/user/login", data);
 				window.location = "/";
 			} catch (e) {
 				if (e == null)
 					return;
-				if(e.status == 412 || e.status == 500)
-					layer.msg(e.data);
-				if(e.status == 400)
+				if(e.status == 412 || e.status == 500 || e.status == 400)
 					layer.msg(e.data.message);
 			}
 		}

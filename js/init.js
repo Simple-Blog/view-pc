@@ -10,8 +10,8 @@ layui.define(['httputil', 'jquery', 'laytpl'], function(exports){
             let html = jquery(this).html();
 
             try {
-                let data = await httputil.get(url);
-                html = laytpl(html).render(data != null ? data : {});
+                let result = await httputil.get(url);
+                html = laytpl(html).render(result.data != null ? result.data : {});
                 jquery(this).html(html);
                 jquery(this).show();
                 return;
