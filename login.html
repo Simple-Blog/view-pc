@@ -46,6 +46,7 @@
 		async function login(data) {
 			try {
 				let response = await httputil.get("/rsa/publicKey");
+				console.log(response);
 				encrypt.setPublicKey(response.data);
 				data.password = encrypt.encrypt(data.password);
 				await httputil.post("/user/login", data);
