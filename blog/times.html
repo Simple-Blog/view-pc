@@ -1,25 +1,32 @@
 <!doctype html>
 <head>
-    <meta charset="utf-8">
-    <title>abcdefg</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/static/css/base.css" rel="stylesheet"/>
+	<meta charset="utf-8">
+	<title>Saturday</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link href="/layui/css/layui.css" rel="stylesheet"/>
+	<link href="/css/base.css" rel="stylesheet"/>
 </head>
 <body>
 <div class="a1">
 	<div class="b1">
-		<ul class="d1">
+		<ul class="d1 templet" url="/blog/times">
 			<li>
 				<a href="/"><- 首页</a>
 			</li>
-			#for(blog : blogList)
+			{{#  layui.each(d, function(index, item){ }}
 			<li>
-				<span>#(blog.time)</span>
-				<a href="/info/#(blog.id)">#(blog.title)</a>
+				<span>{{ item.time }}</span>
+				<a href="/blog/info.html?id={{ item.id }}">{{ item.title }}</a>
 			</li>
-			#end
+			{{#  }); }}
 		</ul>
 	</div>
 </div>
+<script src="/layui/layui.js"></script>
+<script>
+	layui.use(['init'], function(){
+		layui.init();
+	});
+</script>
 </body>
 </html>
