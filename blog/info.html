@@ -8,40 +8,37 @@
 </head>
 <body>
 <div class="a1">
-    <noscript>
-        <templet url="/blog/info/BL100000020">
-            <div style="width: 100%;max-height: 500px;overflow: hidden;">
-                {{# if(d.headImg != "") { }}
-                <img src="{{ d.headImg }}" width="100%"/>
-                {{# } }}
-            </div>
-            <div class="b1">
-                <p class="c1">{{ d.title }}</p>
+    <templet url="/blog/info/BL100000026">
+        <div style="width: 100%;max-height: 500px;overflow: hidden;">
+            {{# if(d.headImg != "") { }}
+            <img my-src="{{ d.headImg }}" width="100%"/>
+            {{# } }}
+        </div>
+        <div class="b1">
+            <p class="c1">{{ d.title }}</p>
+            <p class="c2">
+                <span>{{ d.createTime }}</span>
+            </p>
+            <div id="content" val="{{ d.content }}"></div>
+            <templet url="/blog/tags/BL100000026">
+                {{# if(d.length != 0) { }}
                 <p class="c2">
-                    <span>{{ d.createTime }}</span>
+                <span style="margin-right: 10px;">标签：</span>
+                {{#  layui.each(d, function(index, item){ }}
+                <a href="/tag/{{ item.tagName }}" style="margin-right: 10px;" >{{ item.tagName }}</a>
+                {{#  }); }}
                 </p>
-                <div id="content" val="{{ d.content }}"></div>
-                <!--#if(tags ??)-->
-                <!--<p class="c2">-->
-                    <!--<span style="margin-right: 10px;">标签：</span>-->
-                    <!--#for(tag : tags)-->
-                    <!--<a href="/tag/#(tag)" style="margin-right: 10px;" >#(tag)</a>-->
-                    <!--#end-->
-                <!--</p>-->
-                <!--#end-->
-                <templet url="/blog/info/BL100000026">
-                    <p class="c1">{{ d.title }}</p>
-                </templet>
-                <link href="/css/md.css" rel="stylesheet"/>
-                <link href="/css/code/tomorrow-night.css" rel="stylesheet"/>
-            </div>
-        </templet>
-    </noscript>
+                {{# } }}
+            </templet>
+            <link href="/css/md.css" rel="stylesheet"/>
+            <link href="/css/code/tomorrow-night.css" rel="stylesheet"/>
+        </div>
+    </templet>
 </div>
 <script src="/layui/layui.js"></script>
 <!--<script src="/js/abc.js"></script>-->
 <script>
-    layui.use(['init'], function(){
+    layui.use(['init'], function () {
         layui.init();
         // layui.md.parseAuto(document.getElementById("content").getAttribute("val"), document.getElementById("content"));
     });
