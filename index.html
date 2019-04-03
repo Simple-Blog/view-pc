@@ -5,7 +5,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href="/layui/css/layui.css" rel="stylesheet"/>
     <link href="/css/base.css" rel="stylesheet"/>
-	<script charset="utf-8" src="http://localhost/js/axios.js"></script>
 </head>
 <body>
 <div class="a1">
@@ -24,7 +23,7 @@
 					<span>-></span>
 					<a href="tags">标签列表</a>
 				</li>
-				{{if userName == null}}
+				{{if data == null}}
 				<li>
 					<span>-></span>
 					<a href="/login.html">管理员登陆</a>
@@ -32,7 +31,7 @@
 				{{else}}
 				<li>
 					<span>-></span>
-					<a href="console">控制台 : {{userName}}</a>
+					<a href="console">控制台 : {{data.userName}}</a>
 				</li>
 				<li>
 					<span>-></span>
@@ -45,9 +44,9 @@
 </div>
 
 <script src="/layui/layui.js"></script>
-<script src="/js/base.js"></script>
+<script src="/js/zbase.js"></script>
 <script>
-	zhjs.load("parser", function() {
+	zbase.load("parser", function() {
 	    parser.parseTemplate(document, "template");
 	});
 

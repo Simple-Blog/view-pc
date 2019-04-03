@@ -1,5 +1,17 @@
-layui.define('marked', function (exports) {
-    let md = {
+zbase.load(['marked', 'highlight'], function () {
+    marked.setOptions({
+        gfm: true,
+        tables : true,
+        langPrefix: 'hljs lang-',
+        breaks: true,
+        headerIds: false,
+        xhtml: true,
+        highlight: function (code ,event) {
+            return hljs.highlightAuto(code, [event]).value;
+        }
+    });
+
+    window.md = {
         parse: function (str) {
             return marked(str);
         },
@@ -24,7 +36,6 @@ layui.define('marked', function (exports) {
                     return;
                 }
                 let li = document.createElement("li");
-                li.setAttribute("onClick", 'selectLine(this)');
                 if (showLine)
                     setLineNumber(li, index);
                 setCode(li, line);
@@ -52,12 +63,6 @@ layui.define('marked', function (exports) {
         return element;
     }
 
-    function selectLine(element) {
-        for (let child = element.parentNode.firstChild; child; child = child.nextSibling)
-            child.classList.remove('selected');
-        element.classList.add('selected');
-    }
-
     function setLineNumber(element, num) {
         let lineNumber = document.createElement("span");
         lineNumber.className = 'hljs-ln-num';
@@ -71,6 +76,4 @@ layui.define('marked', function (exports) {
         code.innerHTML = str;
         element.appendChild(code);
     }
-
-    exports('md', md);
 });

@@ -9,23 +9,25 @@
 <body>
 <div class="a1">
 	<div class="b1">
-		<ul class="d1 templet" url="/blog/times">
-			<li>
-				<a href="/"><- 首页</a>
-			</li>
-			{{#  layui.each(d, function(index, item){ }}
-			<li>
-				<span>{{ item.time }}</span>
-				<a href="/blog/info.html?id={{ item.id }}">{{ item.title }}</a>
-			</li>
-			{{#  }); }}
-		</ul>
+		<template parser-url="/blog/times">
+			<ul class="d1">
+				<li>
+					<a href="/"><- 首页</a>
+				</li>
+				{{each data item index}}
+				<li>
+					<span>{{item.time}}</span>
+					<a href="/blog/info.html?id={{item.id}}">{{item.title}}</a>
+				</li>
+				{{/each}}
+			</ul>
+		</template>
 	</div>
 </div>
-<script src="/layui/layui.js"></script>
+<script src="/js/zbase.js"></script>
 <script>
-	layui.use(['init'], function(){
-		layui.init();
+	zbase.load("parser", function() {
+		parser.parseTemplate(document, "template");
 	});
 </script>
 </body>

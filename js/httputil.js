@@ -1,13 +1,10 @@
-;!function (win) {
-    zhjs.load("jquery");
-    zhjs.load("axios");
-
-    win.httputil = {
-        post: function (url, data) {
-            return this.request("post", url, data);
+zbase.load(["axios", "jquery"], function() {
+    window.httputil = {
+        post: async function (url, data) {
+            return await this.request("post", url, data);
         },
-        get: function (url, data) {
-            return this.request("get", url, data);
+        get: async function (url, data) {
+            return await this.request("get", url, data);
         },
         request: async function (method, url, obj) {
             let data = method == "get" ? null : obj;
@@ -23,9 +20,8 @@
                 return response.data;
             } catch (e) {
                 if (e.response != null)
-                    if (e.response.status == 404) {
-                    }
-                    // window.location = "/404.html";
+                    if (e.response.status == 404)
+                        window.location = "/404.html";
                     else if (e.response.status == 401 && e.response.data == 999)
                         window.location = "/login.html";
                     else
@@ -75,4 +71,4 @@
             return status == 200;
         },
     })
-}(window);
+});

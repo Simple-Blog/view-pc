@@ -1,24 +1,25 @@
-;!function(win) {
-    zhjs.load("httputil");
-    zhjs.load("template-web");
-
+zbase.load(["template-web", "httputil"], function() {
     const parser = {};
     parser.parseTemplate = async function(element, arg) {
+        console.log("11111");
+
+        console.log(element);
+        console.log($(element.innerHTML).find(arg));
+        console.log("11111");
         let child;
         while ((child = getFirstChild(element, arg)) != undefined) {
-            await parser.parseTemplate(child, arg);
+            await this.parseTemplate(child, arg);
         }
-
         if (!isMatchArg(element, arg))
             return;
 
         let url = element.getAttribute('parser-url');
         if (url != undefined && url != "") {
             try {
-                let html = document.createElement("template");
+                let html = document.createElement("temp");
                 let result = await httputil.get(url);
-                html.innerHTML = template.compile(element.innerHTML)(result.data);
-                loadImg(html);
+                html.innerHTML = template.compile(element.innerHTML)(result);
+                // loadImg(html);
                 element.outerHTML = html.innerHTML;
                 return;
             } catch (e) {
@@ -36,7 +37,6 @@
             return element.getAttribute("class").indexOf(arg.substring(1)) > -1;
         else {
             return element.tagName == arg.toUpperCase();
-
         }
     }
 
@@ -50,15 +50,14 @@
     }
 
     function loadImg(element) {
-        let imgs = element.getElementsByTagName("img");
-        for (let i = 0; i < imgs.length; ++i) {
-            let src = imgs[i].getAttribute("my-src");
+        for (let img of element.getElementsByTagName("img")) {
+            let src = img.getAttribute("my-src");
             if (src == null || src == "")
                 continue;
-            imgs[i].setAttribute("src", src);
-            imgs[i].removeAttribute("my-src");
+            img.setAttribute("src", src);
+            img.removeAttribute("my-src");
         }
     }
 
-    win.parser = parser;
-}(window);
+    window.parser = parser;
+});
