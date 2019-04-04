@@ -1,0 +1,33 @@
+<!doctype html>
+<head>
+    <meta charset="utf-8">
+    <title>Saturday</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+</head>
+<body>
+<div id="template" class="a1">
+    <template class="asd" parser-url="/blog/info/BL100000026">
+        <template parser-url="/blog/tags/BL100000026">
+            1123
+        </template>
+    </template>
+    <div class="asd" parser-url="/blog/info/BL100000026">
+        <template parser-url="/blog/tags/BL100000026">
+            <img src="{{data.imgUrl}}" />
+        </template>
+    </div>
+    <noscript class="asd" parser-url="/blog/info/BL100000026">
+        <template parser-url="/blog/tags/BL100000026">
+            1123
+        </template>
+    </noscript>
+</div>
+<script src="/js/zbase.js"></script>
+<script>
+    zbase.load(["parser-2", "jquery", "md"], async function() {
+        await parser.parse(".asd", document);
+        // md.parseAuto(document.getElementById("content").getAttribute("val"), document.getElementById("content"));
+    });
+</script>
+</body>
+</html>
