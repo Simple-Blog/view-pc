@@ -7,7 +7,7 @@
 </head>
 <body>
 <div class="a1">
-    <template parser-url="/blog/info/BL100000026">
+    <template parser-url="/blog/info/{id}">
         <div style="width: 100%;max-height: 500px;overflow: hidden;">
             {{if data.headImg != ""}}
             <img src="{{data.headImg}}" width="100%"/>
@@ -19,7 +19,7 @@
                 <span>{{data.createTime}}</span>
             </p>
             <div id="content" val="{{data.content}}"></div>
-            <template parser-url="/blog/tags/BL100000026">
+            <template parser-url="/blog/tags/{id}">
                 {{if data.length != 0}}
                 <span style="margin-right: 10px;">标签：</span>
                 {{each data item index}}
@@ -35,9 +35,9 @@
 </div>
 <script src="/js/zbase.js"></script>
 <script>
-    zbase.load(["parser", "jquery", "md"], async function() {
-        await parser.parseTemplate(document, "template");
-        // md.parseAuto(document.getElementById("content").getAttribute("val"), document.getElementById("content"));
+    zbase.load(["parser", "md"], async function() {
+        await parser.parse("template");
+        md.parseAuto(document.getElementById("content").getAttribute("val"), document.getElementById("content"));
     });
 </script>
 </body>

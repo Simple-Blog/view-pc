@@ -13,13 +13,13 @@
 			<div class="layui-form-item">
 				<label class="layui-form-label">用户名</label>
 				<div class="layui-input-inline">
-					<input type="text" name="loginNumber" required  lay-rify="required" placeholder="请输入用户名" autocomplete="off" class="layui-input">
+					<input type="text" name="loginNumber" required lay-verify="required" placeholder="请输入用户名" autocomplete="off" class="layui-input">
 				</div>
 			</div>
 			<div class="layui-form-item">
 				<label class="layui-form-label">密码</label>
 				<div class="layui-input-inline">
-					<input type="password" name="password" required lay-very="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
+					<input type="password" name="password" required lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
 				</div>
 			</div>
 			<div class="layui-form-item">
@@ -33,17 +33,19 @@
 <script src="/layui/layui.js"></script>
 <script src="/js/zbase.js"></script>
 <script>
-	zbase.load("httputil");
-	layui.use(['jsencrypt', 'form'], function(){
-		let encrypt = layui.jsencrypt;
+	layui.use(['form'], function () {
 		let form = layui.form;
 
-		form.on('submit(login)', function(data){
-			login(data.field);
+		form.on('submit(login)', function(data) {
+			doLogin(data.field);
 			return false;
 		});
+	});
 
-		async function login(data) {
+	zbase.load(['httputil', 'jsencrypt'], function() {
+		let encrypt = new JSEncrypt();
+
+		window.doLogin = async function(data) {
 			try {
 				let response = await httputil.get("/rsa/publicKey");
 				encrypt.setPublicKey(response.data);

@@ -20,8 +20,8 @@ zbase.load(["axios", "jquery"], function() {
                 return response.data;
             } catch (e) {
                 if (e.response != null)
-                    if (e.response.status == 404)
-                        window.location = "/404.html";
+                    if (e.response.status == 404){}
+                        // window.location = "/404.html";
                     else if (e.response.status == 401 && e.response.data == 999)
                         window.location = "/login.html";
                     else
