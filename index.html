@@ -44,29 +44,42 @@
 	</ul>
 </div>
 
-<div class="mdui-dialog" id="exampleNoTitle" style="width: 300px">
-	<div class="mdui-dialog-title mdui-color-theme">
+		<form id="login" action="/" method="get">
+<div class="mdui-dialog sa-login" id="exampleNoTitle">
+	<div class="mdui-dialog-title mdui-color-theme mdui-p-x-2">
+		<i class="mdui-icon material-icons" mdui-dialog-close style="cursor:pointer;">arrow_back</i>
 		Login
 	</div>
 	<div class="mdui-dialog-content">
 		<div class="mdui-textfield mdui-textfield-floating-label">
 			<label class="mdui-textfield-label">用户名 / 手机号</label>
-			<input  class="mdui-textfield-input" type="text" name="a" />
+			<input class="mdui-textfield-input" type="text" name="a" required />
 		</div>
 		<div class="mdui-textfield mdui-textfield-floating-label">
 			<label class="mdui-textfield-label">密码</label>
-			<input  class="mdui-textfield-input" type="password" name="b" />
+			<input class="mdui-textfield-input" type="password" name="b" required />
 		</div>
 	</div>
 	<div class="mdui-dialog-actions">
-		<button class="mdui-btn mdui-ripple" mdui-dialog-close>注册</button>
-		<button class="mdui-btn mdui-ripple" mdui-dialog-confirm>登录</button>
+		<button class="mdui-btn mdui-ripple" type="button">注册</button>
+		<button class="mdui-btn mdui-ripple" type="submit">登录</button>
 	</div>
 </div>
+		</form>
 
 <script src="/js/zbase.js"></script>
 <script>
+
+
 	zbase.load("mdui", function() {
+		let $$ = mdui.JQ;
+		document.querySelector("#login").addEventListener('submit',function(event){
+			mdui.snackbar({
+				message: '用户名或密码不正确',
+				position: 'right-top'
+			});
+			event.preventDefault();
+		});
 	});
 </script>
 </body>
