@@ -1,20 +1,20 @@
-;!function(win) {
+; !function (win) {
     const zbase = {};
     zbase.doc = document;
     zbase.head = zbase.doc.getElementsByTagName("head")[0];
     zbase.jsArray = [];
     zbase.onload = [];
     zbase.config = {
-        prefix : "/js/",
-        suffix : ".js"
+        prefix: "/js/",
+        suffix: ".js"
     };
-    zbase.load = function(urls, onload) {
+    zbase.load = function (urls, onload) {
         urls = typeof urls === 'string' ? [urls] : urls;
         for (let i = 0; i < urls.length; ++i)
             urls[i] = zbase.config.prefix + urls[i] + zbase.config.suffix;
         this.loadUrl(urls, onload);
     };
-    zbase.loadUrl = function(urls, onload) {
+    zbase.loadUrl = function (urls, onload) {
         this.onload.push(onload);
         urls = typeof urls === 'string' ? [urls] : urls;
         for (let url of urls) {
@@ -44,9 +44,30 @@
             this.head.removeChild(node);
         }
     };
-    win.onload = function() {
+    zbase.serializeForm = function (array) {
+        let o = {};
+        for (let item of array) {
+            if (o[item.name]) {
+                if (!o[item.name].push)
+                    o[item.name] = [o[item.name]];
+                o[item.name].push(item.value || '');
+            } else {
+                o[item.name] = item.value || '';
+            }
+        }
+        return o;
+    };
+    zbase.zuid = function(n) {
+        let str = "abcdefghijklmnopqrstuvwxyz0123456789";
+        let result = "";
+        for(let i = 0; i < n; ++i) {
+            result += str[parseInt(Math.random() * str.length)];
+        }
+        return result;
+    };
+    win.onload = function () {
         zbase.onload = zbase.onload.reverse();
-        for(let func of zbase.onload) {
+        for (let func of zbase.onload) {
             if (func != undefined)
                 func();
         }

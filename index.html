@@ -1,86 +1,108 @@
 <!doctype html>
+
 <head>
-    <meta charset="utf-8">
-    <title>Saturday</title>
+	<meta charset="utf-8">
+	<title>Saturday</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link href="/css/mdui.min.css" rel="stylesheet"/>
-    <link href="/css/base.css" rel="stylesheet"/>
+	<link href="/css/mdui.min.css" rel="stylesheet" />
+	<link href="/css/base.css" rel="stylesheet" />
 </head>
+
 <body class="mdui-theme-primary-blue-grey mdui-theme-accent-teal">
-<div class="mdui-container mdui-m-y-4">
-	<ul class="mdui-row a1">
-		<li class="mdui-col-xs-12 mdui-m-y-1">
-			<span>-></span>
-			<a href="category">微春树下风飘荡，柳树成荫泪两行</a>
-		</li>
-		<li class="mdui-col-xs-12 mdui-m-y-1">
-			<span>-></span>
-			<a href="/blog/times.html">微春树下风飘荡，柳树成荫泪两行</a>
-		</li>
-		<li class="mdui-col-xs-12 mdui-m-y-1">
-			<span>-></span>
-			<a href="tags">微春树下风飘荡，柳树成荫泪两行</a>
-		</li>
-		<li class="mdui-col-xs-12 mdui-m-y-1">
-			<span>-></span>
-			<a href="javascript:void(0);" mdui-dialog="{target: '#exampleNoTitle'}">管理员登录</a>
-		</li>
-		<li class="mdui-col-xs-12 mdui-m-y-1">
-			<span>-></span>
-			<a href="console">微春树下风飘荡，柳树成荫泪两行</a>
-		</li>
-		<li class="mdui-col-xs-12 mdui-m-y-1">
-			<span>-></span>
-			<a href="console">微春树下风飘荡，柳树成荫泪两行</a>
-		</li>
-		<li class="mdui-col-xs-12 mdui-m-y-1">
-			<span>-></span>
-			<a href="console">微春树下风飘荡，柳树成荫泪两行</a>
-		</li>
-		<li class="mdui-col-xs-12 mdui-m-y-1">
-			<span>-></span>
-			<a href="console">微春树下风飘荡，柳树成荫泪两行</a>
-		</li>
-	</ul>
-</div>
-
-		<form id="login" action="/" method="get">
-<div class="mdui-dialog sa-login" id="exampleNoTitle">
-	<div class="mdui-dialog-title mdui-color-theme mdui-p-x-2">
-		<i class="mdui-icon material-icons" mdui-dialog-close style="cursor:pointer;">arrow_back</i>
-		Login
+	<div class="mdui-container mdui-m-y-4">
+		<ul class="mdui-row a1">
+			<li class="mdui-col-xs-12 mdui-m-y-1">
+				<span>-></span>
+				<a href="category">微春树下风飘荡，柳树成荫泪两行</a>
+			</li>
+			<li class="mdui-col-xs-12 mdui-m-y-1">
+				<span>-></span>
+				<a href="/blog/times.html">微春树下风飘荡，柳树成荫泪两行</a>
+			</li>
+			<li class="mdui-col-xs-12 mdui-m-y-1">
+				<span>-></span>
+				<a href="tags">微春树下风飘荡，柳树成荫泪两行</a>
+			</li>
+			<li class="mdui-col-xs-12 mdui-m-y-1">
+				<span>-></span>
+				<a href="javascript:void(0);" mdui-dialog="{target: '#exampleNoTitle'}">管理员登录</a>
+			</li>
+			<li class="mdui-col-xs-12 mdui-m-y-1">
+				<span>-></span>
+				<a href="console">微春树下风飘荡，柳树成荫泪两行</a>
+			</li>
+			<li class="mdui-col-xs-12 mdui-m-y-1">
+				<span>-></span>
+				<a href="console">微春树下风飘荡，柳树成荫泪两行</a>
+			</li>
+			<li class="mdui-col-xs-12 mdui-m-y-1">
+				<span>-></span>
+				<a href="console">微春树下风飘荡，柳树成荫泪两行</a>
+			</li>
+			<li class="mdui-col-xs-12 mdui-m-y-1">
+				<span>-></span>
+				<a href="console">微春树下风飘荡，柳树成荫泪两行</a>
+			</li>
+		</ul>
 	</div>
-	<div class="mdui-dialog-content">
-		<div class="mdui-textfield mdui-textfield-floating-label">
-			<label class="mdui-textfield-label">用户名 / 手机号</label>
-			<input class="mdui-textfield-input" type="text" name="a" required />
+
+	<form id="login" action="/" method="get">
+		<div class="mdui-dialog sa-login" id="exampleNoTitle">
+			<div class="mdui-dialog-title mdui-color-theme mdui-p-x-2">
+				<i class="mdui-icon material-icons" mdui-dialog-close style="cursor:pointer;">arrow_back</i>
+				Login
+			</div>
+			<div class="mdui-dialog-content">
+				<div class="mdui-textfield mdui-textfield-floating-label">
+					<label class="mdui-textfield-label">用户名 / 手机号</label>
+					<input class="mdui-textfield-input" type="text" name="loginNumber" required />
+				</div>
+				<div class="mdui-textfield mdui-textfield-floating-label">
+					<label class="mdui-textfield-label">密码</label>
+					<input class="mdui-textfield-input" type="password" name="password" required />
+				</div>
+			</div>
+			<div class="mdui-dialog-actions">
+				<button class="mdui-btn mdui-ripple" type="button">注册</button>
+				<button class="mdui-btn mdui-ripple" type="submit">登录</button>
+			</div>
 		</div>
-		<div class="mdui-textfield mdui-textfield-floating-label">
-			<label class="mdui-textfield-label">密码</label>
-			<input class="mdui-textfield-input" type="password" name="b" required />
-		</div>
-	</div>
-	<div class="mdui-dialog-actions">
-		<button class="mdui-btn mdui-ripple" type="button">注册</button>
-		<button class="mdui-btn mdui-ripple" type="submit">登录</button>
-	</div>
-</div>
-		</form>
+	</form>
 
-<script src="/js/zbase.js"></script>
-<script>
+	<script src="/js/zbase.js"></script>
+	<script>
+		zbase.load(["mdui","httputil","jsencrypt"], function () {
+			let $$ = mdui.JQ;
+			let encrypt = new JSEncrypt();
 
-
-	zbase.load("mdui", function() {
-		let $$ = mdui.JQ;
-		document.querySelector("#login").addEventListener('submit',function(event){
-			mdui.snackbar({
-				message: '用户名或密码不正确',
-				position: 'right-top'
+			document.querySelector("#login").addEventListener('submit', function (event) {
+				event.preventDefault();
+				doLogin(zbase.serializeForm($$(event.target).serializeArray()));
 			});
-			event.preventDefault();
+
+			async function doLogin(data) {
+				try {
+					let response = await httputil.get("/rsa/publicKey");
+					encrypt.setPublicKey(response.data);
+					data.password = encrypt.encrypt(data.password);
+					await httputil.post("/user/login", data);
+
+					// login success
+					window.location = "/";
+				} catch (e) {
+					if (e == null)
+						return;
+					if (e.status == 412 || e.status == 500 || e.status == 400)
+						mdui.snackbar({
+							message: e.data.message,
+							position: 'right-top'
+						});
+					else
+						console.log(e);
+				}
+			}
 		});
-	});
-</script>
+	</script>
 </body>
+
 </html>

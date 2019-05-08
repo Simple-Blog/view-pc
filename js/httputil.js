@@ -9,6 +9,10 @@ zbase.load(["axios", "jquery"], function() {
         request: async function (method, url, obj) {
             let data = method == "get" ? null : obj;
             let params = method != "get" ? null : obj;
+            let header = method != "post" ? null : {
+                'timestamp' : new Date().getTime(),
+                'uid' : zbase.zuid(12),
+            };
 
             try {
                 let response = await strSender.request({
@@ -16,6 +20,7 @@ zbase.load(["axios", "jquery"], function() {
                     method: method,
                     params: params,
                     data: data,
+                    headers: header,
                 });
                 return response.data;
             } catch (e) {
